@@ -8,7 +8,7 @@ module MiniStitch
 
       @request_params = { Authorization: "Bearer #{MiniStitch.configuration.token}" }.merge(DEFAULT_REQUEST_PARAMS)
       @table_name = table_name
-      @sequence = sequence.to_sym
+      @sequence = sequence.to_i
       @key_names = key_names.map(&:to_s)
       @data = build_records(data)
     end
@@ -28,7 +28,7 @@ module MiniStitch
         {
           client_id: MiniStitch.configuration.client_id,
           table_name: table_name,
-          sequence: record[sequence].to_i,
+          sequence: sequence,
           action: default_api_action,
           key_names: key_names,
           data: record
