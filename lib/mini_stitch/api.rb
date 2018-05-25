@@ -46,8 +46,8 @@ module MiniStitch
 
     def validate(key_names, data, table_name)
       raise MiniStitch::Errors::WrongUpsertFields, 'key_names field must be an Array' unless key_names.is_a?(Array)
-      raise MiniStitch::Erorrs::WrongUpsertFields, 'data field must be an Array' unless data.is_a?(Array)
-      raise MiniStitch::Erorrs::WrongUpsertFields, 'table_name field must be a String' unless table_name.is_a?(String)
+      raise MiniStitch::Errors::WrongUpsertFields, 'data field must be an Array' unless data.is_a?(Array)
+      raise MiniStitch::Errors::WrongUpsertFields, 'table_name field must be a String' unless table_name.is_a?(String)
     end
 
     def stitch_post_request(url)
