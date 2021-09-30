@@ -53,7 +53,8 @@ module MiniStitch
     def stitch_post_request(url)
       JSON.parse(RestClient.post(url, @data.to_json, @request_params))
     rescue RestClient::ExceptionWithResponse => e
-      { 'status' => e.message, 'message' => JSON.parse(e.response)['errors'] }
+      # timeouts have nil responses
+      { 'status' => e.message, 'message' => e.response.nil? ? 'request timed out' : JSON.parse(e.response)['errors'] }
     end
   end
 end
