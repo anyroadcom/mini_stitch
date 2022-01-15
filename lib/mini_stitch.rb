@@ -31,13 +31,17 @@ module MiniStitch
   end
 
   class Configuration
-    attr_accessor :token, :client_id
+    attr_accessor :token, :client_id, :secondary_token, :secondary_client_id
 
     def initialize
       @token = nil
       @client_id = nil
       @secondary_token = nil
       @secondary_client_id = nil
+    end
+
+    def has_second_configuration? 
+      secondary_token.present? && secondary_client_id.present?
     end
   end
 end

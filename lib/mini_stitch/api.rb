@@ -54,13 +54,9 @@ module MiniStitch
       { Authorization: "Bearer #{token}" }.merge(DEFAULT_REQUEST_PARAMS)
     end
 
-    def second_configuration?
-      MiniStitch.configuration.token.present? && MiniStitch.second_configuration.client_id.present?
-    end
-
     def stitch_post_request(url)
       post_request(url, create_request_params(MiniStitch.configuration.token), @data_configuration)
-      if second_configuration?
+      if MiniStitch.configuration.has_second_configuration?
         secondary_request_params = create_request_params(MiniStitch.configuration.secondary_token)
         post_request(url, secondary_request_params, @secondary_data)
       end
