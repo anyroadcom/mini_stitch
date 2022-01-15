@@ -36,6 +36,8 @@ module MiniStitch
     def initialize
       @token = nil
       @client_id = nil
+      @secondary_token = nil
+      @secondary_client_id = nil
     end
   end
 end
