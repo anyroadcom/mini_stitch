@@ -41,7 +41,7 @@ module MiniStitch
     end
 
     def has_second_configuration? 
-      secondary_token.present? && secondary_client_id.present?
+      !secondary_token.nil? && !secondary_client_id.nil?
     end
   end
 end
