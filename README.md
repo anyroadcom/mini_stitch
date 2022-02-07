@@ -26,6 +26,18 @@ MiniStitch.configure do |config|
 end
 ```
 
+This gem also supports a second configuration (for a separate Stitch account) should you want to import data to two different accounts. While `secondary_token` and `secondary_client_id` are optional, `token` and `client_id` are not.
+
+```rb
+# initializers/mini_stitch.rb
+MiniStitch.configure do |config|
+  config.token = "your-api-token"
+  config.client_id = "your-client-id"
+  config.secondary_token = "your-api-token"
+  config.secondary_client_id = "your-client-id"
+end
+```
+
 ### Usage
 
 I recommend you take a look at the [Stitch Data Import Api Doc](https://www.stitchdata.com/docs/integrations/import-api) to get the gist of what the `upsert`, `validate` & `status` methods do. Yes, this gem has only 3 methods ☀️
@@ -33,16 +45,16 @@ I recommend you take a look at the [Stitch Data Import Api Doc](https://www.stit
 !! For the Wrapper to successfully accept and process your data, your call must contain all of the request fields listed below:
 
 - **table_name** | `String`
-This field contains the name of the destination table
+  This field contains the name of the destination table
 
 - **sequence** | `String`
-This property tells the Import API the order in which data points in the request body should be considered. See [Defining Sequence](https://www.stitchdata.com/docs/integrations/import-api#defining-the-sequence) for more info. The most straightforward way is to use `Time.now.to_i` to get the current time in posix format.
+  This property tells the Import API the order in which data points in the request body should be considered. See [Defining Sequence](https://www.stitchdata.com/docs/integrations/import-api#defining-the-sequence) for more info. The most straightforward way is to use `Time.now.to_i` to get the current time in posix format.
 
 - **key_names** | `Array` | 🔑
-This field defines the *Primary Key* and will contain an array of field names that uniquely identify the row that the record belongs to. *Primary Keys* identify unique rows within a table and ensure that only the most recently updated version of that record appears in your data warehouse.
+  This field defines the _Primary Key_ and will contain an array of field names that uniquely identify the row that the record belongs to. _Primary Keys_ identify unique rows within a table and ensure that only the most recently updated version of that record appears in your data warehouse.
 
 - **data** | `Array of Hashes`
-This field contains the data to be upserted into your data warehouse.
+  This field contains the data to be upserted into your data warehouse.
 
 1. #### Status
 
