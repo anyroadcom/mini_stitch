@@ -55,7 +55,7 @@ module MiniStitch
     end
 
     def stitch_post_request(url)
-      post_request(url, create_request_params(MiniStitch.configuration.token), @data_configuration)
+      post_request(url, create_request_params(MiniStitch.configuration.token), @data)
       if MiniStitch.configuration.has_second_configuration?
         secondary_request_params = create_request_params(MiniStitch.configuration.secondary_token)
         post_request(url, secondary_request_params, @secondary_data)
@@ -64,9 +64,9 @@ module MiniStitch
 
     def post_request(url, request_params, data)
       JSON.parse(RestClient.post(url, data.to_json, request_params))
-    rescue RestClient::ExceptionWithResponse => e
-      # timeouts have nil responses
-      { 'status' => e.message, 'message' => e.response.nil? ? 'request timed out' : JSON.parse(e.response)['errors'] }
+      rescue RestClient::ExceptionWithResponse => e
+        # timeouts have nil responses
+        { 'status' => e.message, 'message' => e.response.nil? ? 'request timed out' : JSON.parse(e.response)['errors'] }
     end
   end
 end
