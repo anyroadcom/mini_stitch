@@ -1,8 +1,8 @@
 PATH
   remote: .
   specs:
-    mini_stitch (0.1.0)
-      json (>= 1.8, < 2.0)
+    mini_stitch (0.1.1)
+      json (~> 2.6.1)
       oj (~> 3.3, >= 3.3.9)
       rest-client (~> 2.0, >= 2.0.2)
 
@@ -15,7 +15,7 @@ GEM
       unf (>= 0.0.5, < 1.0.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
-    json (1.8.6)
+    json (2.6.2)
     method_source (0.8.2)
     mime-types (3.1)
       mime-types-data (~> 3.2015)
