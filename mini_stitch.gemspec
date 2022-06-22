@@ -32,7 +32,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rake', '~> 12.2.1'
   spec.add_development_dependency 'rspec', '~> 3.7.0'
 
-  spec.add_dependency 'json', '>= 1.8', '<2.0'
+  spec.add_dependency 'json', '>= 1.8', '< 3.0'
   spec.add_dependency 'oj', '~> 3.3', '>= 3.3.9'
   spec.add_dependency 'rest-client', '~> 2.0', '=2.0.2' # TODO locking until testing impact in anyroad of newer versions
 end
